@@ -38,9 +38,10 @@ const LISTA_GIFS = [
 export default function App() {
   const [concluidos, setConcluidos] = useState<number[]>([]);
   const [mostrarGif, setMostrarGif] = useState(false);
+  const [mostrarConfirmacaoFalta, setMostrarConfirmacaoFalta] = useState(false); // Novo estado
   const [gifAtual, setGifAtual] = useState(LISTA_GIFS[0]);
   const [ultimoIndexGif, setUltimoIndexGif] = useState<number | null>(null);
-  const [pessoaAtual, setPessoaAtual] = useState(""); // Trava o nome no modal
+  const [pessoaAtual, setPessoaAtual] = useState("");
 
   useEffect(() => {
     const buscarConcluidos = async () => {
@@ -103,7 +104,7 @@ export default function App() {
       novoIndex = Math.floor(Math.random() * LISTA_GIFS.length);
     } while (novoIndex === ultimoIndexGif);
 
-    setPessoaAtual(nome); // Salva o nome de quem clicou
+    setPessoaAtual(nome);
     setUltimoIndexGif(novoIndex);
     setGifAtual(LISTA_GIFS[novoIndex]);
 
@@ -117,11 +118,26 @@ export default function App() {
     }
   };
 
+  const confirmarFalta = async () => {
+    const itemTopo = escalaAtiva[0];
+    if (!itemTopo) return;
+
+    const { error } = await supabase
+      .from("conclusoes_lixo")
+      .insert([
+        { data_id: itemTopo.id, nome_colaborador: `FALTOU: ${itemTopo.nome}` },
+      ]);
+
+    if (!error) {
+      setMostrarConfirmacaoFalta(false);
+    }
+  };
+
   return (
     <div className="container">
       <header>
         <h1 className="title">Vez do Lixo 🗑</h1>
-        <p className="subtitle">Escala 2026 • Sextas Úteis</p>
+        <p className="subtitle">Escala 2026 </p>
       </header>
 
       <main className="lista-fila">
@@ -142,19 +158,94 @@ export default function App() {
                   <p>{index === 0 ? "🔥 É A VEZ DE AGORA" : "Próxima sexta"}</p>
                 </div>
               </div>
+
               {index === 0 && (
-                <button
-                  className="btn-acao"
-                  onClick={() => handleConfirmar(item.id, item.nome)}
-                >
-                  Tirei!
-                </button>
+                <div style={{ display: "flex", gap: "8px" }}>
+                  <button
+                    className="btn-acao"
+                    onClick={() => handleConfirmar(item.id, item.nome)}
+                  >
+                    Tirei!
+                  </button>
+                  <button
+                    onClick={() => setMostrarConfirmacaoFalta(true)}
+                    style={{
+                      background: "rgba(255,255,255,0.1)",
+                      color: "#fff",
+                      border: "1px solid #444",
+                      padding: "8px 12px",
+                      borderRadius: "12px",
+                      cursor: "pointer",
+                      fontSize: "0.8rem",
+                    }}
+                  >
+                    Faltou
+                  </button>
+                </div>
               )}
             </motion.div>
           ))}
         </AnimatePresence>
       </main>
 
+      {/* MODAL DE CONFIRMAÇÃO DE FALTA */}
+      <AnimatePresence>
+        {mostrarConfirmacaoFalta && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="overlay"
+          >
+            <motion.div
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              className="modal-content"
+              style={{
+                background: "#1a1a1a",
+                padding: "30px",
+                borderRadius: "24px",
+                border: "1px solid #333",
+              }}
+            >
+              <h2 style={{ marginBottom: "15px" }}>A pessoa da vez faltou?</h2>
+              <p style={{ color: "#aaa", marginBottom: "25px" }}>
+                Isso passará a vez para o próximo da lista permanentemente.
+              </p>
+              <div
+                style={{
+                  display: "flex",
+                  gap: "10px",
+                  justifyContent: "center",
+                }}
+              >
+                <button
+                  onClick={confirmarFalta}
+                  className="btn-acao"
+                  style={{ background: "#ff4444" }}
+                >
+                  Sim, faltou!
+                </button>
+                <button
+                  onClick={() => setMostrarConfirmacaoFalta(false)}
+                  style={{
+                    background: "#333",
+                    color: "#fff",
+                    border: "none",
+                    padding: "10px 20px",
+                    borderRadius: "12px",
+                    cursor: "pointer",
+                  }}
+                >
+                  Cancelar
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* MODAL DO GIF DE SUCESSO */}
       <AnimatePresence>
         {mostrarGif && (
           <motion.div
