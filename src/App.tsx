@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "./supabaseClient";
 
-const COLABORADORES = ["Dinamite", "Denise", "Felix"];
+const COLABORADORES = [ "Denise","Dinamite", "Felix"];
 
 const FERIADOS_2026 = [
   "01/01",
@@ -136,7 +136,7 @@ export default function App() {
   return (
     <div className="container">
       <header>
-        <h1 className="title">Vez do Lixo 🗑</h1>
+        <h1 className="title">Lista 🗑</h1>
         <p className="subtitle">Escala 2026 </p>
       </header>
 

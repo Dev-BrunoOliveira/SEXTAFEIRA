@@ -11,7 +11,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Inter', system-ui, sans-serif;
-  -webkit-tap-highlight-color: transparent; /* Melhora o toque no mobile */
+  -webkit-tap-highlight-color: transparent; 
 }
 
 body {
@@ -24,13 +24,13 @@ body {
 
 .container {
   width: 100%;
-  max-width: 500px; /* Mantém centralizado no desktop */
+  max-width: 500px;
   padding: 40px 20px;
   text-align: center;
 }
 
 .title {
-  font-size: clamp(2rem, 8vw, 2.8rem); /* Fonte que se ajusta ao tamanho da tela */
+  font-size: clamp(2rem, 8vw, 2.8rem); 
   margin-bottom: 8px;
   font-weight: 900;
   letter-spacing: -1px;
@@ -88,7 +88,6 @@ body {
   font-size: 0.9rem;
 }
 
-/* MODAL E GIFS */
 .overlay {
   position: fixed;
   inset: 0;
@@ -106,10 +105,10 @@ body {
   text-align: center;
 }
 
-/* PADRONIZAÇÃO DOS GIFS */
+
 .gif-container {
   width: 100%;
-  height: 250px; /* Altura fixa para todos os GIFs */
+  height: 250px; 
   border-radius: 20px;
   overflow: hidden;
   margin-bottom: 20px;
@@ -119,5 +118,5 @@ body {
 .gif-container img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Faz o GIF preencher o quadrado sem esticar */
+  object-fit: cover; 
 }
