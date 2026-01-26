@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "./supabaseClient";
 
-const COLABORADORES = [ "Denise","Dinamite", "Felix"];
+const COLABORADORES = ["Denise", "Dinamite", "Felix"];
 
 const FERIADOS_2026 = [
   "01/01",
@@ -38,7 +38,7 @@ const LISTA_GIFS = [
 export default function App() {
   const [concluidos, setConcluidos] = useState<number[]>([]);
   const [mostrarGif, setMostrarGif] = useState(false);
-  const [mostrarConfirmacaoFalta, setMostrarConfirmacaoFalta] = useState(false); // Novo estado
+  const [mostrarConfirmacaoFalta, setMostrarConfirmacaoFalta] = useState(false);
   const [gifAtual, setGifAtual] = useState(LISTA_GIFS[0]);
   const [ultimoIndexGif, setUltimoIndexGif] = useState<number | null>(null);
   const [pessoaAtual, setPessoaAtual] = useState("");
@@ -188,7 +188,6 @@ export default function App() {
         </AnimatePresence>
       </main>
 
-      {/* MODAL DE CONFIRMAÇÃO DE FALTA */}
       <AnimatePresence>
         {mostrarConfirmacaoFalta && (
           <motion.div
@@ -245,7 +244,6 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* MODAL DO GIF DE SUCESSO */}
       <AnimatePresence>
         {mostrarGif && (
           <motion.div
