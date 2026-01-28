@@ -33,6 +33,18 @@ const LISTA_GIFS = [
     url: "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2FhZnZvZDZrOXlqeHEydm5zM2FnNHY1MDV3MHZzNnV3dmk0bWE1cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yoJC2GnSClbPOkV0eA/giphy.gif",
     texto: "Sextooooou vamos embora!",
   },
+{
+  url: "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTZ1NTNvYTVhN2V2OXAxa2Q4N3FvdXp4MDVqNm16amhzaXF1YTl5MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/gVsmn4qdyBn1Bra2tN/giphy.gif",
+  texto: "Sextooou, boa folgaaaaa!",
+},
+{
+  url: "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHdsaTBjZDg3bW1mZHNtZW1vZWYyemk5cHY5MjJ3MmV1MWUxbDJvOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/13CoXDiaCcCoyk/giphy.gif",
+  texto: "Sextooou, boa folgaaaaa!",
+},
+{
+  url: "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExdHc2dzJrZ3M0NTMyeHg4aXM5ajVvbGxobXhra3o3bDlocXRkZW9iMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QxcSqRe0nllClKLMDn/giphy.gif",
+  texto: "Não esqueceu de varrer o estoque né?",
+}
 ];
 
 export default function App() {
